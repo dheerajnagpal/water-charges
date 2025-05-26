@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water and Sewage Cost Relief Request</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    input {
+      padding: 10px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact the Mayor</h1>
+  <p>Please enter your name and click below to send a pre-filled email to the mayor regarding high water and sewage costs.</p>
+
+  <label for="senderName">Your Name:</label>
+  <input type="text" id="senderName" placeholder="Enter your full name" required>
+
+  <button onclick="sendEmail()">Send Email</button>
+
+  <script>
+    function sendEmail() {
+      const name = document.getElementById("senderName").value.trim();
+      if (!name) {
+        alert("Please enter your name before sending the email.");
+        return;
+      }
+
+      const recipient = "mayor@example.gov";
+      const subject = encodeURIComponent("Request for Relief from Excessive Water and Sewage Costs");
+      const body = encodeURIComponent(
+`Dear Mayor [Last Name],
+
+We are writing to express deep concern about the increasingly unaffordable cost of essential utilities in our community — specifically water and sewage services.
+
+Monthly sewage charges have risen to over $100, while the base water rate is $68. When combined with taxes, service fees, and other surcharges, residents are paying a minimum of $200 every month just to meet basic sanitation needs. This is creating significant financial hardship for many households.
+
+Access to clean water and safe sewage disposal is a fundamental necessity, not a luxury. We are asking your office to urgently review the current rate structure and explore immediate steps to provide relief for residents — whether through subsidies, billing reform, or infrastructure investments that reduce cost over time.
+
+We appreciate your attention to this matter and urge you to act swiftly on behalf of the citizens you serve.
+
+Sincerely,
+${name}
+Concerned Resident of [City Name]`
+      );
+
+      const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+    }
+  </script>
+
+</body>
+</html>
